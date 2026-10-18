@@ -16,6 +16,21 @@ Forecasting daily demand for 20 grocery SKUs (Walmart M5 dataset) and turning th
 - **8.8% less inventory at a higher fill rate** (99.96% vs 99.88%) compared with the same policy driven by a naive forecast
 - **3,797 stockout-censored days** detected and imputed across 14 SKUs before modelling
 
+## What this means for a store manager
+
+For one Walmart store's top grocery items over a 4-week test (forecast rows: all 20 items; stock rows: the 17 still on sale):
+
+| Question | Old way (repeat last week's pattern) | DemandIQ forecast |
+|---|---|---|
+| How far off are daily forecasts? | 30.9% average error | **23.3%** |
+| Do forecasts lean too low? | Yes, 9.3% under: shelves run short | **2.8% under**: nearly balanced |
+| Extra "just in case" stock needed for 95% service | 604 units | **468 units** (136 fewer) |
+| Average stock on the shelf at the same reorder rule | 1,895 units, 99.88% of demand met | **1,729 units (−8.8%), 99.96% met** |
+
+**In plain terms:** with the better forecast the store holds about 9% less stock and still runs out less often. That frees cash and shelf space without hurting customers. The gain comes from a more accurate and less biased forecast, not from cutting service.
+
+**What to do with it:** set each item's reorder point from the forecast for the next 3 days (supplier lead time) plus its safety stock, and order a fixed quantity sized by EOQ but capped at 14 days of demand for shelf life. `outputs/inventory_policy.csv` lists the order quantity and safety stock for every item.
+
 ## Business Problem
 A store must decide how much of each product to stock. Under-stocking loses sales; over-stocking ties up cash and shelf space. Better forecasts reduce the uncertainty that safety stock has to cover, which means **less inventory for the same service level**.
 
